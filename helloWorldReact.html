@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <div id="root"></div>
+    <script src="file:///C:\Users\User\Pentest\react.production.min.js"></script>
+    <script src="file:///C:\Users\User\Pentest\react-dom.production.min.js"></script>
+    <script src="file:///C:\Users\User\Pentest\babel.js"></script>
+    <title>React Beginners Course</title>
+</head>
+<body>
+
+    <div id="root"></div>
+    <script type="text/babel">
+        const HelloWorld = () => {
+            return (
+                <p>Hello world in React with component based</p>
+            )
+        }
+
+        const Greetings = (props) => {
+            return (
+                <p>Welcome {props.name} to Beginners tutorials in React</p>
+            )
+        }
+
+        class UserInformation extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <h1>User Informations</h1>
+                        <p>hello, {this.props.name}!</p>
+                        <p>You are {this.props.age} years old</p>
+                        <p>You are a {this.props.gender}</p>
+                    </div>
+                )
+            }
+        }
+
+        const rootElement = document.getElementById("root");
+        ReactDOM.render(
+            <div>
+                <HelloWorld />
+                <Greetings name={"Desmond Brown"} />
+                <UserInformation name="Desmond Brown" age="18" gender="Male" />
+            </div>,
+            rootElement
+        )
+    </script>
+</body>
+</html>

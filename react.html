@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="file:///C:\Users\User\Pentest\react.production.min.js"></script>
+    <script src="file:///C:\Users\User\Pentest\react-dom.production.min.js"></script>
+    <script src="file:///C:\Users\User\Pentest\babel.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root')
+        
+        const content = 'Hello World'
+        const myClassName = 'container'
+        const props = {
+            className: 'container',
+            children: 'Hello World'
+        }
+
+        const greetings = props => <div>Hello, {props.name} Welcome to React Course</div>
+        const SayHello = (props) => {
+            return (
+                <div>Hello {props.firstName} {props.lastName}!</div>
+            )
+        }
+
+        const PropTypes = {
+            string(props, propName, componentName){
+                if (typeof props[propName] !== 'string'){
+                    return new Error(`Hey, you should pass a string for ${propName} in ${componentName}, but you passed a ${typeof props[propName]}!`)
+                }
+            }
+        }
+
+        SayHello.propTypes = {
+            firstName: PropTypes.string,
+            lastName: PropTypes.string
+        }
+
+        const element = <div className="container">
+            
+            <SayHello firstName={true} />
+            </div>
+        console.log(element);
+        ReactDOM.render(<SayHello firstName={true} />, rootElement)
+    </script>
+</body>
+</body>
+</html>
