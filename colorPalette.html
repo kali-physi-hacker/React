@@ -4,12 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="file:///C:\Users\User\Pentest\react.production.min.js"></script>
-    <script src="file:///C:\Users\User\Pentest\react-dom.production.min.js"></script>
-    <script src="file:///C:\Users\User\Pentest\babel.js"></script>
+    <script src=".\react.production.min.js"></script>
+    <script src=".\react-dom.production.min.js"></script>
+    <script src=".\babel.js"></script>
+    <style>
+        #container {
+            padding: 50px;
+            background-color: #FFF; 
+        }
+    </style>
     <title>Color Palette (React Complex Components)</title>
 </head>
 <body>
-    
+    <h1>Simple Color Palette (React) </h1>
+
+    <div id="container"></div>
+    <script type="text/babel">
+        const rootElement = document.getElementById("container");
+
+        class Square extends React.Component {
+            render () {
+                const squareStyle = {
+                    height: 150,
+                    backgroundColor: this.props.color
+                }
+
+                return (
+                    <div style={squareStyle}></div>
+                )
+            }
+        }
+
+        class Label extends React.Component {
+            render () {
+                const labelStyle = {
+                    fontFamily: 'sans-serif',
+                    fontWeight: 'bold',
+                    padding: 13,
+                    margin: 0
+                }
+                return (
+                    <p style={labelStyle}>{this.props.color}</p>
+                )
+            }
+        }
+
+        class Card extends React.Component {
+            render() {
+                const cardStyle = {
+                    margin: 10,
+                    display: 'inline-block',
+                    height: 200,
+                    width: 150,
+                    padding: 0,
+                    backgroundColor: "#FFF",
+                    boxShadow: "0px 0px 5px #666"
+                }
+
+                return (
+                    <div style={cardStyle}>
+                        <Square color={this.props.color} />
+                        <Label color={this.props.color} />
+                    </div>
+                )
+            }
+        }
+
+        const cards = (
+            <div>
+                <div>
+                    <Card color="#FF6663" />
+                    <Card color="#958393" />
+                    <Card color="#F58F94" />
+                    <Card color="#FFA737" />
+                </div>
+                <div>
+                    <Card color="#2196F3" />
+                    <Card color="#512DA8" />
+                    <Card color="#FF5722" />
+                    <Card color="#388E3C" />
+                </div>
+            </div>
+        )
+
+        ReactDOM.render(
+            cards, rootElement
+        )
+    </script>
 </body>
 </html>
