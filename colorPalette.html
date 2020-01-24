@@ -70,25 +70,37 @@
             }
         }
 
-        const cards = (
-            <div>
-                <div>
-                    <Card color="#FF6663" />
-                    <Card color="#958393" />
-                    <Card color="#F58F94" />
-                    <Card color="#FFA737" />
-                </div>
-                <div>
-                    <Card color="#2196F3" />
-                    <Card color="#512DA8" />
-                    <Card color="#FF5722" />
-                    <Card color="#388E3C" />
-                </div>
-            </div>
-        )
+        // const cards0 = (
+        //     <div>
+        //         <div>
+        //             <Card color="#FF6663" />
+        //             <Card color="#958393" />
+        //             <Card color="#F58F94" />
+        //             <Card color="#FFA737" />
+        //         </div>
+        //         <div>
+        //             <Card color="#2196F3" />
+        //             <Card color="#512DA8" />
+        //             <Card color="#FF5722" />
+        //             <Card color="#388E3C" />
+        //         </div>
+        //     </div>
+        // )   
+
+        
+        const colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363", "#85FFC7", "#297373", "#FF8552", "#A40E4C", '#FF6663', '#958393', '#F58F94', '#FFA737', "#2196F3", "#512DA8", "#FF5722", "#388E3C"];
+
+        let cards = [];
+
+        for (let i=0; i<colors.length; i++) {
+            cards.push(<Card color={colors[i]} />)
+        }
+
+        let group_cards = <div>{cards}</div>
+
 
         ReactDOM.render(
-            cards, rootElement
+            group_cards, rootElement
         )
     </script>
 </body>
