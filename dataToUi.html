@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src=".\react.production.min.js"></script>
+    <script src=".\react-dom.production.min.js"></script>
+    <script src=".\babel.js"></script>
+    <style>
+        #root {
+            padding: 50px;
+            background-color: #fff;
+        }
+    </style>
+    <title>Data To Ui React</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const rootElement = document.querySelector("#root");
+
+        class Circle extends React.Component {
+            render() {
+                const circleStyle = {
+                    padding: 10,
+                    margin: 20,
+                    display: "inline-block",
+                    backgroundColor: this.props.bgColor,
+                    borderRadius: "50%",
+                    width: 100,
+                    height: 100
+                }
+
+                return (
+                    <div style={circleStyle}></div>
+                )
+            }
+        }
+
+        // let theCircle = <Circle bgColor="##F9C240" />;
+
+        // const showCircle = () => {
+        //     // const colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363"];
+        //     const colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363", "#85FFC7", "#297373", "#FF8552", "#A40E4C"];
+        //     let ran = Math.floor(Math.random() * colors.length)
+        //     return <Circle bgColor={colors[ran]} /> 
+        // }
+
+        let renderData = []
+
+        const colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363", "#85FFC7", "#297373", "#FF8552", "#A40E4C"];
+
+
+        for (let i=0; i<colors.length; i++) {
+            renderData.push(<Circle key={i + colors[i]} bgColor={colors[i]} />);
+        }
+
+        // let circles = (
+        //     <div>{showCircle()}</div>
+        // )
+
+        ReactDOM.render(
+            // circles,
+            <div> 
+                {renderData}
+            </div>,
+            rootElement
+        )
+
+    </script>
+</body>
+</html>
