@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src=".\react.production.min.js"></script>
+    <script src=".\react-dom.production.min.js"></script>
+    <script src=".\babel.js"></script>
+    <style>
+        body{
+            padding: 50px;
+            background-color: #66CCFF;
+            font-family: sans-serif;
+        }
+
+        #root{
+            display: flex;
+            justify-content: center;
+        }
+        .todoListMain .header input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #FFF;
+            width: 165px;
+        }
+        .todoListMain .header button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            margin-right: 0px;
+            background-color: #0066FF;
+            color: #FFF;
+            border: 2px solid #0066FF;
+        }
+        .todoListMain .header button:hover {
+            background-color: #003399;
+            border: 2px solid #003399;
+            cursor: pointer;
+        }
+        .todoListMain .theList {
+            list-style: none;
+            padding-left: 0;
+            width: 250px;
+        }
+        .todoListMain .theList li {
+            color: #333;
+            background-color: rgba(255,255,255,.5);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+    </style>
+
+    <title>Kali's Todo List</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root');
+
+        class TodoItems extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.createTasks = this.createTasks.bind(this)
+            }
+
+            delete(key) {
+                this.props.delete(key)
+            }
+
+            createTasks(items) {
+                return <li onClick={() => this.delete(items.key)} key={items.key}>{items.text}</li>
+            }
+
+            render() {
+                let todoEntries = this.props.entries;
+                let listItems = todoEntries.map(this.createTasks)
+
+                return (
+                    <ul className='theList'>{listItems}</ul>
+                )
+            }
+        }
+
+        class TodoList extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+                    items: []
+                }
+
+                this.addItem = this.addItem.bind(this)
+                this.deleteItem = this.deleteItem.bind(this)
+            }
+
+            addItem(e) {
+                var itemArray = this.state.items
+
+                if (this._inputElement.valuee !== "") {
+                    itemArray.unshift({
+                        text: this._inputElement.value,
+                        key: Date.now()
+                    })
+
+                    this.setState({
+                        items: itemArray
+                    })
+
+                    this._inputElement = ""
+                }
+
+                e.preventDefault()
+            }
+
+            deleteItem(key) {
+                let filteredItems = this.state.items.filter(function(item){
+                    return (item.key ==! key)
+                })
+                this.setState({
+                    items: filteredItems
+                })
+            }
+
+            render() {
+                return (
+                    <div className="todoListMain">
+                        <div className="header">
+                            <form onSubmit={this.addItem}>
+                                <input ref={(a) => this._inputElement = a} placeholder="Enter Task" />
+                                <button type="submit">Add Task</button>
+                            </form>
+                        </div>
+                        <TodoItems delete={this.deleteItem} entries={this.state.items} />
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <div><TodoList /></div>, rootElement
+        )
+    </script>
+</body>
+</html>
